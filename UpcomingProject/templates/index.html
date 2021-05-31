@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+<meta charset="UTF-8"> {% block title %}Angular TodoList{% endblock %} {% block page_content %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="..\static\JS\logic.js"></script>
+
+<!-- 网站主表头 -->
+<div style="text-align:left">
+    <h1>AngularJS TodoList</h1>
+</div>
+<!-- 顶部的搜索表单和按钮 -->
+<div>
+    <input type="text" id="SearchInput" oninput="Search()" placeholder="Search for..." style="height: 27px;width: 600px;margin-right: -5px">
+    <button onclick="Search()" style="height: 28px;width: 40px">Go!</button>
+</div>
+
+<!-- 表头文字提示-->
+<div style="margin-top: 8px">
+    <b style="margin-right: 110px">#</b>
+    <b style="margin-right: 300px">Title</b>
+    <b>Control</b>
+</div>
+<hr style="height:3px;width:640px ;border: none;border-top:3px solid #dddddd;margin:15px 0 5px 0;" />
+<!-- 内容部分 -->
+<div id="Content"></div>
+
+<div>
+    <input placeholder="type something here..." id="addRecord" style="height: 32px;width: 400px;margin-right: 80px">
+    <button onclick="addRecord()" style="height: 33px;width: auto">Add new item</button>
+</div>
+
+
+<!-- 底部的计数部分 -->
+<div id="BottomContent" style="margin-top: 25px"></div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+certifi==2020.12.5
+click==8.0.1
+colorama==0.4.4
+dominate==2.6.0
+Flask==2.0.1
+Flask-Bootstrap==3.3.7.1
+greenlet @ file:///C:/ci/greenlet_1620913839232/work
+itsdangerous==2.0.1
+Jinja2==3.0.1
+MarkupSafe==2.0.1
+mysqlclient @ file:///G:/edge_download/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl
+SQLAlchemy==1.4.17
+visitor==0.1.3
+Werkzeug==2.0.1
+wincertstore==0.2
