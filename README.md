@@ -2,9 +2,15 @@
 
 ### 一、题目
 
-[题目链接](http://note.youdao.com/noteshare?id=cf98c1239d6cf56936c11583f95d23c9&amp;sub=7FCC6795E228458E88CE7A034B481610)
+利用Python+flask框架，实现一个代办事情（需要有：编号，代办事情标题，时间 ，状态等字段）列表web应用；
 
-[![2mMNQg.png](https://z3.ax1x.com/2021/05/31/2mMNQg.png)](https://imgtu.com/i/2mMNQg)
+**技术要点：**
+
+1 界面可以选用前端UI框架；可以采用前后端分离的方式实现，也可以混编方式实现；
+
+2 数据库采用MySQL;采用SQLAchemy框架；
+
+![demo](Question\demo.gif)
 
 ### 二、虚拟环境
 
@@ -18,23 +24,31 @@ pip install -r requirements
 友情链接：
 [mysqlclient网站](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient "进去之后可以ctrl + F查询mysqlclient，就可以找到了")
 
-### 三、代码结构
+### 三、代码结构及部分注释
 
-1. start.py
+```python
+.
+|-- README.md
+|-- UpcomingProject 项目文件夹
+|   |-- Model 
+|   |   |-- UpComingModel.py  数据库操作 使用了sqlalchemy
+|   |   |-- __init__.py
+|   |-- __init__.py
+|   |-- config
+|   |   |-- __init__.py
+|   |   `-- sqlConfig.py  数据库配置文件
+|   |-- do_upcoming.py  flask框架的应用， 定义了很多数据接口
+|   |-- static
+|   |   `-- JS
+|   |       `-- logic.js  写逻辑的文件
+|   `-- templates
+|       |-- base.html  模板文件
+|       `-- index.html  首页
+|-- __init__.py
+`-- start.py  程序主入口
+|-- requirements.txt  虚拟环境
 
-   程序的总入口
+```
 
-2. UpComingProject/
-&emsp;&emsp;&emsp;config/&nbsp;
-&emsp;&emsp;&emsp;&emsp;sqlConfig.py   **数据库的配置文件**&nbsp;
-&emsp;&emsp;&emsp;Model/&nbsp;
-&emsp;&emsp;&emsp;&emsp;_ _ init _ _.py  **初始化了session**&nbsp;
-&emsp;&emsp;&emsp;&emsp;UpComingModel.py **数据库操作 使用sqlalchemy**&nbsp;
-&emsp;&emsp;&emsp;static/&nbsp;
-&emsp;&emsp;&emsp;&emsp;JS/&nbsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;logic.js  **写逻辑的js文件**&nbsp;
-&emsp;&emsp;&emsp;templates/&nbsp;
-&emsp;&emsp;&emsp;&emsp;base.html&nbsp;
-&emsp;&emsp;&emsp;&emsp;index.html&nbsp;
-&emsp;&emsp;&emsp;do_upcoming.py  **flask框架的应用， 定义了很多数据接口**&nbsp;
-					
+
+​					
