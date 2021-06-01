@@ -10,7 +10,7 @@
 
 2 数据库采用MySQL;采用SQLAchemy框架；
 
-![demo](Question\demo.gif)
+![demo](https://raw.githubusercontent.com/wenzhu123/web-exercise/master/Question/demo.gif)
 
 ### 二、虚拟环境
 
