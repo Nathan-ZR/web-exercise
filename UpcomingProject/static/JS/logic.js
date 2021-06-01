@@ -1,29 +1,13 @@
-// 全局变量oldText 用于保存点击编辑前的Title
-let oldText = ""
-
 // 加载时候的内容逻辑
-$(document).ready(function () {
+$(document).ready(function() {
     $.ajax({
         url: '/allData',
         dataType: 'json',
         type: 'GET',
         async: false,
-        success: function (data) {
+        success: function(data) {
             $("#Content").html(displayContent(data))
-        }
-    })
-})
-
-// 底部计数逻辑
-$(document).ready(function () {
-    $.ajax({
-        // 接口待更改
-        url: '/allDataCount',
-        dataType: 'json',
-        type: 'GET',
-        async: false,
-        success: function (data) {
-            $("#BottomContent").html(displayCount(data))
+            displayCount()
         }
     })
 })
@@ -37,7 +21,7 @@ function Search() {
             dataType: 'json',
             type: 'GET',
             async: false,
-            success: function (data) {
+            success: function(data) {
                 $("#Content").html(displayContent(data))
             }
         })
@@ -47,7 +31,7 @@ function Search() {
             dataType: 'json',
             type: 'POST',
             async: false,
-            success: function (data) {
+            success: function(data) {
                 $("#Content").html(displayContent(data))
             }
         })
@@ -63,12 +47,11 @@ function addRecord() {
         dataType: 'json',
         type: 'POST',
         async: false,
-        success: function (data) {
+        success: function(data) {
             console.log(data)
             $("#addRecord").val("")
-            console.log(displayContent(data))
             $("#Content").html(displayContent(data))
-            $("#BottomContent").html(displayCount(data))
+            displayCount()
         }
     })
 }
@@ -78,33 +61,28 @@ function displayContent(data) {
     let html = "";
     for (let index = 0; index < data.records.length; index++) {
         let content = data.records[index];
-        html += '<div style="float:left;height:27px;width:110px;"><label id="label' + (index + 1) + '">' + (index + 1) + '</label></div>';
+        html += '<div class="numDiv"><label id="label' + (index + 1) + '">' + (index + 1) + '</label></div>';
         if (content.Undo) {
-            html += '<div style="float:left;height:27px;width:300px;"><input id="input' + (index + 1) + '" type="text" readonly value="' +
-                content.Title + '" style="border:None"></div>';
-            html += '<div style="float:left;height: 36px;width: 230px;"><button onclick="isFinish(this.id,' + content.Undo + ')" id="Dbutton' + (index + 1) + '" style="height: 28px;width: auto">Done</button>';
+            html += '<div class="titleDiv"><input class="titleFinish" id="input' + (index + 1) + '" type="text" readonly value="' + content.Title + '"></div>';
+            html += '<div class="controlDiv"><button onclick="isFinish(this.id,' + content.Undo + ')" name="Done" id="Dbutton' + (index + 1) + '">Done</button>';
         } else {
-            html += '<div style="float:left;height:27px;width:300px;"><input id="input' + (index + 1) + '" type="text" readonly="readonly" value="' +
-                content.Title + '" style="border:None;text-decoration:line-through"></div>';
-            html += '<div style="float:left;height: 36px;width: 230px;"><button onclick="isFinish(this.id,' + content.Undo + ')" id="Dbutton' + (index + 1) + '" style="height: 28px;width: auto">Undo</button>';
+            html += '<div class="titleDiv"><input class="titleUnFinish" id="input' + (index + 1) + '" type="text" readonly="readonly" value="' + content.Title + '"></div>';
+            html += '<div class="controlDiv"><button onclick="isFinish(this.id,' + content.Undo + ')" name="Undo" id="Dbutton' + (index + 1) + '">Undo</button>';
         }
-        html += '<button onclick="editRecord(this.id)" id="Ebutton' + (index + 1) + '" style="height: 28px;width: auto">Edit</button>';
-        html += '<button onclick="RemoveRecord(this.id)" id="Rbutton' + (index + 1) + '" style="height: 28px;width: auto">Remove</button></div>';
-        html += '<hr style="height:3px;width:640px ;border: none;border-top:3px solid #ddd;margin:15px 0 5px 0;"/>'
+        html += '<button onclick="editRecord(this.id)"  valueText="" id="Ebutton' + (index + 1) + '">Edit</button>';
+        html += '<button onclick="RemoveRecord(this.id)" id="Rbutton' + (index + 1) + '">Remove</button></div>';
+        html += '<hr/>'
     }
     return html;
 }
 
 // 显示 左下角的计数器
-function displayCount(data) {
-    let html = "";
-    html += ' <button disabled="disabled" style="height: 30px;padding: 0 0;width: auto;background: rgba(118,119,118,0.95);">All(' +
-        data.count.total_count + ')</button>';
-    html += ' <button disabled="disabled" style="height: 30px;padding: 0 0;width: auto;background: rgba(92,183,92,0.95);">Done(' +
-        data.count.Done_count + ')</button>';
-    html += ' <button disabled="disabled" style="height: 30px;padding: 0 0;width: auto;background: rgba(240,173,78,0.95);">Active(' +
-        data.count.Undo_count + ')</button>';
-    return html;
+function displayCount() {
+    let UndoCount = document.getElementsByName("Undo").length;
+    let DoneCount = document.getElementsByName("Done").length;
+    document.getElementById("allCount").innerText = "All(" + (UndoCount + DoneCount) + ")"
+    document.getElementById("doneCount").innerText = "Done(" + DoneCount + ")"
+    document.getElementById("activeCount").innerText = "All(" + UndoCount + ")"
 }
 
 // 移除记录
@@ -122,32 +100,19 @@ function isFinish(id, Undo) {
 // 修改记录
 function editRecord(id) {
     let inputId = "input" + id.substring(7)
-    let text = document.getElementById(inputId).value;
     let isReadonly = document.getElementById(inputId).readOnly;
     if (isReadonly) {
         document.getElementById(inputId).readOnly = false;
-        document.getElementById('Ebutton' + id.substring(7)).onclick = function () {
-            saveRecord('Ebutton' + id.substring(7))
-        }
-        document.getElementById('Ebutton' + id.substring(7)).innerHTML = "Save";
-    }
-    oldText = text
-}
-
-// 保存修改记录
-function saveRecord(id) {
-    let inputId = "input" + id.substring(7)
-    let text = document.getElementById(inputId).value;
-    let isReadonly = document.getElementById(inputId).readOnly;
-    if (!isReadonly) {
+        document.getElementById('Ebutton' + id.substring(7)).innerText = "Save";
+        document.getElementById('Ebutton' + id.substring(7)).valueText = document.getElementById(inputId).value;
+    } else {
         document.getElementById(inputId).readOnly = true;
-        document.getElementById('Sbutton' + id.substring(7)).onclick = function () {
-            editRecord('Sbutton' + id.substring(7))
-        }
-        document.getElementById('Sbutton' + id.substring(7)).innerHTML = "Edit";
+        document.getElementById('Ebutton' + id.substring(7)).innerText = "Edit";
+        let oldText = document.getElementById('Ebutton' + id.substring(7)).valueText;
+        let newText = document.getElementById(inputId).value;
+        ajax_request('/editRecord?condition=' + oldText + '&newText=' + newText)
     }
-    ajax_request('/editRecord?condition=' + oldText + '&newText=' + text)
-    oldText = "" // 重新恢复成空
+
 }
 
 //ajax的请求
@@ -157,9 +122,9 @@ function ajax_request(url) {
         dataType: 'json',
         type: 'POST',
         async: false,
-        success: function (data) {
+        success: function(data) {
             $("#Content").html(displayContent(data))
-            $("#BottomContent").html(displayCount(data))
+            displayCount()
         }
     })
 }

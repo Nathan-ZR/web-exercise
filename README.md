@@ -36,16 +36,16 @@ pip install -r requirements
 |   |-- __init__.py
 |   |-- config
 |   |   |-- __init__.py
-|   |   `-- sqlConfig.py  数据库配置文件
+|   |   |-- sqlConfig.py  数据库配置文件
 |   |-- do_upcoming.py  flask框架的应用， 定义了很多数据接口
 |   |-- static
-|   |   `-- JS
-|   |       `-- logic.js  写逻辑的文件
-|   `-- templates
+|   |   -- JS
+|   |       -- logic.js  写逻辑的文件
+|   |-- templates
 |       |-- base.html  模板文件
-|       `-- index.html  首页
+|       |-- index.html  首页
 |-- __init__.py
-`-- start.py  程序主入口
+|-- start.py  程序主入口
 |-- requirements.txt  虚拟环境
 
 ```

@@ -1,0 +1,144 @@
+/* 网站表头 */
+
+.siteHead {
+    text-align: left
+}
+
+
+/* end 网站表头 */
+
+
+/* 顶部的搜索表单和按钮 */
+
+.searchInput {
+    height: 27px;
+    width: 600px;
+    margin-right: -5px
+}
+
+.GoButton {
+    height: 28px;
+    width: 40px
+}
+
+
+/* end 顶部的搜索表单和按钮 */
+
+
+/* 所有的分割线 */
+
+hr {
+    height: 3px;
+    width: 640px;
+    border: none;
+    border-top: 3px solid #dddddd;
+    margin: 15px 0 5px 0;
+}
+
+
+/* end 所有分割线 */
+
+
+/* 表头文字 */
+
+.tableHeadLetter {
+    margin-top: 8px;
+}
+
+.tableHeadLetter :nth-child(1) {
+    margin-right: 110px;
+}
+
+.tableHeadLetter :nth-child(2) {
+    margin-right: 300px;
+}
+
+.tableHeadLetter :nth-child(3) {
+    margin-right: 230px;
+}
+
+
+/* end 表头文字 */
+
+
+/* 内容部分 */
+
+.numDiv {
+    float: left;
+    height: 27px;
+    width: 110px;
+}
+
+.titleDiv {
+    float: left;
+    height: 27px;
+    width: 300px;
+}
+
+.titleFinish {
+    border: None
+}
+
+.titleUnFinish {
+    border: None;
+    text-decoration: line-through;
+}
+
+.controlDiv {
+    float: left;
+    height: 36px;
+    width: 230px;
+}
+
+.controlDiv>button {
+    height: 28px;
+    width: auto
+}
+
+
+/* end 内容部分 */
+
+
+/* 增加的表单和按钮 */
+
+.addInput {
+    height: 32px;
+    width: 400px;
+    margin-right: 80px
+}
+
+.addButton {
+    height: 33px;
+    width: auto
+}
+
+
+/* end 增加的表单和按钮 */
+
+
+/* 底部的计数部分 */
+
+.bottomCount {
+    margin-top: 25px
+}
+
+.bottomCount>button {
+    height: 30px;
+    padding: 0 0;
+    width: auto;
+}
+
+.bottomCount :nth-child(1) {
+    background: rgba(118, 119, 118, 0.95);
+}
+
+.bottomCount :nth-child(2) {
+    background: rgba(92, 183, 92, 0.95);
+}
+
+.bottomCount :nth-child(3) {
+    background: rgba(240, 173, 78, 0.95);
+}
+
+
+/* end 底部的计数部分 */
